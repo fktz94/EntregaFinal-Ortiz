@@ -68,18 +68,20 @@ function NavLink({ text }) {
 
 export default function NavBar() {
   return (
-    <header className="px-8 py-5 flex justify-between items-center sticky top-0 shadow-md bg-first">
-      <span className="font-bold cursor-default text-3xl tracking-wide transition-colors hover:text-fourth">
-        MORO
-      </span>
-      <nav>
-        <ul className="flex justify-between gap-2">
-          <NavLink text="Nosotros" />
-          <Dropdown />
-          <NavLink text="Contacto" />
-        </ul>
-      </nav>
-      <CartWidget />
+    <header className="p-5 sticky top-0 shadow-md bg-first">
+      <div className="flex justify-between items-center max-w-4xl m-auto">
+        <span className="font-bold cursor-default text-3xl tracking-wide transition-colors hover:text-fourth">
+          MORO
+        </span>
+        <nav>
+          <ul className="flex justify-between gap-2">
+            <NavLink text="Nosotros" />
+            <Dropdown />
+            <NavLink text="Contacto" />
+          </ul>
+        </nav>
+        <CartWidget />
+      </div>
     </header>
   );
 }
