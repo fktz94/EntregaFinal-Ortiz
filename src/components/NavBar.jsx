@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 import CartWidget from './CartWidget';
 
 function DropdownItems({ text }) {
@@ -13,7 +14,7 @@ function DropdownItems({ text }) {
 }
 function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const className = 'p-2 border border-transparent font-semibold text-lg';
+  const className = 'p-2 flex items-center gap-2 border border-transparent font-semibold text-lg';
 
   const handleSetIsOpen = (event) => {
     const { type } = event;
@@ -28,7 +29,13 @@ function Dropdown() {
         type="button"
         onMouseEnter={(event) => handleSetIsOpen(event)}
         onMouseLeave={(event) => handleSetIsOpen(event)}>
-        Productos {isOpen ? '↑' : '↓'}
+        {/* Productos {isOpen ? '↑' : '↓'} */}
+        Productos
+        {isOpen ? (
+          <BiSolidUpArrow style={{ fontSize: '.6rem' }} />
+        ) : (
+          <BiSolidDownArrow style={{ fontSize: '.6rem' }} />
+        )}
       </button>
       {isOpen && (
         <div className="absolute w-full bg-third">
@@ -59,7 +66,7 @@ function NavLink({ text }) {
 
 export default function NavBar() {
   return (
-    <header className="px-8 py-5 flex justify-between items-center sticky top-0 bg-first">
+    <header className="px-8 py-5 flex justify-between items-center sticky top-0 shadow-md bg-first">
       <span className="font-bold cursor-default text-3xl tracking-wide">MORO</span>
       <nav>
         <ul className="flex justify-between gap-2">
