@@ -13,22 +13,29 @@ function DropdownItems({ text }) {
 }
 function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const className = 'p-2';
+  const className = 'p-2 border border-transparent font-semibold text-lg';
+
+  const handleSetIsOpen = (event) => {
+    const { type } = event;
+    if (type === 'mouseenter') return setIsOpen(true);
+    return setIsOpen(false);
+  };
+
   return (
     <div className="relative">
       <button
         className={className}
         type="button"
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}>
-        Productos <small>{isOpen ? '↑' : '↓'}</small>
+        onMouseEnter={(event) => handleSetIsOpen(event)}
+        onMouseLeave={(event) => handleSetIsOpen(event)}>
+        Productos {isOpen ? '↑' : '↓'}
       </button>
       {isOpen && (
         <div className="absolute w-full bg-third">
           <ul
             className="border"
-            onMouseEnter={() => setIsOpen(true)}
-            onMouseLeave={() => setIsOpen(false)}>
+            onMouseEnter={(event) => handleSetIsOpen(event)}
+            onMouseLeave={(event) => handleSetIsOpen(event)}>
             <DropdownItems text="Remeras" />
             <DropdownItems text="Buzos" />
             <DropdownItems text="Pantalones" />
@@ -40,7 +47,7 @@ function Dropdown() {
   );
 }
 function NavLink({ text }) {
-  const className = 'p-2 border border-transparent hover:border-b-black';
+  const className = 'p-2 border border-transparent font-semibold text-lg hover:border-b-black';
   return (
     <li>
       <a href="/" className={`block h-full ${className}`}>
@@ -52,8 +59,8 @@ function NavLink({ text }) {
 
 export default function NavBar() {
   return (
-    <header className="flex justify-between px-8 py-5 items-center bg-first">
-      <span className="font-bold cursor-default text-lg tracking-wider">MORO</span>
+    <header className="px-8 py-5 flex justify-between items-center bg-first">
+      <span className="font-bold cursor-default text-3xl tracking-wide">MORO</span>
       <nav>
         <ul className="flex justify-between gap-2">
           <NavLink text="Contacto" />
