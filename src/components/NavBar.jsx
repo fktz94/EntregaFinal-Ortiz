@@ -6,7 +6,7 @@ function AccountButtons({ text }) {
   return (
     <button
       type="button"
-      className="px-6 py-1 border transition-colors font-semibold text-sm border-black hover:bg-black hover:text-fourth">
+      className="px-5 py-1 border transition-colors font-semibold text-sm border-black hover:bg-black hover:text-fourth">
       {text}
     </button>
   );
@@ -77,7 +77,7 @@ function NavLink({ text }) {
 
 export default function NavBar() {
   return (
-    <header className="p-5 sticky top-0 shadow-md bg-first">
+    <header className="p-5 shadow-md border-b border-black bg-first">
       <div className="flex justify-between items-center max-w-6xl m-auto">
         <span className="font-bold cursor-default text-3xl tracking-wide transition-colors hover:text-fourth">
           MORO
@@ -89,11 +89,11 @@ export default function NavBar() {
             <NavLink text="Contacto" />
           </ul>
         </nav>
-        <CartWidget />
         <div className="flex gap-2">
           <AccountButtons text="Registrarse" />
           <AccountButtons text="Ingresar" />
         </div>
+        <CartWidget />
       </div>
     </header>
   );

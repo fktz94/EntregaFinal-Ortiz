@@ -2,7 +2,7 @@ import { BsCart4 } from 'react-icons/bs';
 
 function CartWidget() {
   return (
-    <p className="py-3 px-5 flex gap-2 items-center rounded-full bg-black text-light">
+    <p className="py-2 px-4 flex gap-2 items-center rounded-full bg-black text-light">
       <BsCart4 style={{ fontSize: '1.3rem' }} /> 5
     </p>
 
