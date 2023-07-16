@@ -2,8 +2,8 @@ import { BsCart4 } from 'react-icons/bs';
 
 function CartWidget() {
   return (
-    <p className="flex gap-2 items-center">
-      <BsCart4 style={{ fontSize: '1.3rem' }} /> (5)
+    <p className="py-3 px-5 flex gap-2 items-center rounded-full bg-black text-light">
+      <BsCart4 style={{ fontSize: '1.3rem' }} /> 5
     </p>
 
     // uso react-icons o uso un emoji?

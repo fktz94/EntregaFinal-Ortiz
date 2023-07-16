@@ -2,6 +2,15 @@ import { useState } from 'react';
 import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 import CartWidget from './CartWidget';
 
+function AccountButtons({ text }) {
+  return (
+    <button
+      type="button"
+      className="px-6 py-1 border transition-colors font-semibold text-sm border-black hover:bg-black hover:text-fourth">
+      {text}
+    </button>
+  );
+}
 function DropdownItems({ text }) {
   const className = 'w-full p-3 block tracking-wide font-semibold hover:bg-first hover:text-fourth';
   return (
@@ -69,7 +78,7 @@ function NavLink({ text }) {
 export default function NavBar() {
   return (
     <header className="p-5 sticky top-0 shadow-md bg-first">
-      <div className="flex justify-between items-center max-w-4xl m-auto">
+      <div className="flex justify-between items-center max-w-6xl m-auto">
         <span className="font-bold cursor-default text-3xl tracking-wide transition-colors hover:text-fourth">
           MORO
         </span>
@@ -81,6 +90,10 @@ export default function NavBar() {
           </ul>
         </nav>
         <CartWidget />
+        <div className="flex gap-2">
+          <AccountButtons text="Registrarse" />
+          <AccountButtons text="Ingresar" />
+        </div>
       </div>
     </header>
   );
