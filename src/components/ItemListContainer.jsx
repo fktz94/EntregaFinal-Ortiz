@@ -2,13 +2,11 @@ import { useState } from 'react';
 import ItemCount from './ItemCount';
 
 export default function ItemListContainer({ greeting }) {
-  const [stock, setStock] = useState(6);
-  const [purchase, setPurchase] = useState(stock > 0 ? 1 : 0);
+  const [stock, setStock] = useState(4);
 
-  const onAdd = (value) => {
-    if (stock > 0) {
-      if (value === '-') return setPurchase((prev) => prev - 1);
-      if (value === '+') return setPurchase((prev) => prev + 1);
+  const onAdd = (selectedPurchase) => {
+    if (stock > 0 && selectedPurchase > 0 && selectedPurchase <= stock) {
+      return setStock((prev) => prev - selectedPurchase);
     }
     return false;
   };
@@ -16,7 +14,7 @@ export default function ItemListContainer({ greeting }) {
   return (
     <div className="mx-8 p-20 flex flex-col gap-5 items-center justify-center rounded-full shadow-xl bg-fourth">
       <span className="text-2xl font-semibold tracking-wider">{greeting}</span>
-      <ItemCount onAdd={onAdd} purchase={purchase} stock={stock} />
+      <ItemCount stock={stock} onAdd={onAdd} />
     </div>
   );
 }
