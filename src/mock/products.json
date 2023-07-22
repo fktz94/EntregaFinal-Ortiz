@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Remera oversize gris",
+    "description": "",
+    "stock": 10,
+    "imgUrl": "../../assets/remera-overzise-gris.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Buzo oversize lila",
+    "description": "",
+    "stock": 5,
+    "imgUrl": "../../assets/buzo-oversize-lila.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Gorros de lana",
+    "description": "",
+    "stock": 0,
+    "imgUrl": "../../assets/gorros.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Medias",
+    "description": "gris",
+    "stock": 7,
+    "imgUrl": "../../assets/medias.heic"
+  },
+  {
+    "id": 6,
+    "title": "Remera oversize lila",
+    "description": "",
+    "stock": 4,
+    "imgUrl": "../../assets/remera-oversize-lila.HEIC"
+  }
+]

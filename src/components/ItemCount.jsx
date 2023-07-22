@@ -1,15 +1,21 @@
 import { useEffect, useState } from 'react';
 
 function AddButton({ value, side, onPurchase, disabled }) {
+  const roundedSide = side === 'l' ? 'rounded-l-full' : 'rounded-r-full';
+
+  // TAILWIND ---> ¿Por qué no me funciona de esta manera? Me funciona 'raro'.
+  // const roundedSide = `rounded-${side}-full`;
+
   return (
     <button
       type="button"
       onClick={() => onPurchase(value)}
-      className={`px-4 p-3 rounded-${side}-full text-xl font-bold  bg-black text-white border border-black outline-none ${
-        disabled
-          ? 'bg-gray-500 text-gray-300 border-gray-500 cursor-default'
-          : 'hover:text-fourth active:border-fourth'
-      }`}>
+      className={`py-1 px-2 ${roundedSide} font-medium border bg-black text-light
+       border-black outline-none ${
+         disabled
+           ? 'bg-gray-500 text-gray-300 border-gray-500 cursor-default'
+           : 'hover:text-fourth active:border-fourth'
+       }`}>
       {value}
     </button>
   );
@@ -46,7 +52,7 @@ export default function ItemCount({ onAdd, stock }) {
         />
         <input
           type="text"
-          className="w-28 font-semibold text-xl text-center outline-none bg-white"
+          className="w-8 font-semibold text-center outline-none bg-light"
           readOnly
           value={purchase}
         />
@@ -60,10 +66,10 @@ export default function ItemCount({ onAdd, stock }) {
       <button
         type="button"
         onClick={handleAddToCart}
-        className={`py-2 border tracking-wide w-44 transition-colors outline-none ${
+        className={`py-1 px-2 border rounded transition-colors outline-none ${
           purchase <= 0
             ? 'cursor-default bg-gray-500 text-gray-300 border-gray-500'
-            : 'bg-third  border-black  hover:bg-transparent active:font-semibold active:bg-gray-100 '
+            : 'bg-third border-black  hover:bg-transparent active:bg-gray-300 active:border-teal-600'
         }`}>
         Agregar al carrito
       </button>

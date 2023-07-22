@@ -6,7 +6,7 @@
 
 - Proyecto final para CoderHouse
 
-- PreEntrega 2 (actividad n°1)
+- PreEntrega 2 (actividad n°2)
 
 ---
 
