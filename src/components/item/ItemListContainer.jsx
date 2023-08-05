@@ -20,6 +20,7 @@ function FilterButton({ text, onClick, activeStyle }) {
 export default function ItemListContainer() {
   const [items, setItems] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [filters, setFilters] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryParam = searchParams.get('category');
 
@@ -38,6 +39,17 @@ export default function ItemListContainer() {
 
     return () => setItems(null);
   }, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getCategoryFilters();
+        setFilters(data);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+    return () => setFilters(null);
+  }, []);
 
   const filteredItems = categoryParam
     ? items?.filter((item) => item.category === categoryParam)
@@ -55,7 +67,7 @@ export default function ItemListContainer() {
   };
 
   const filterButtons = () => {
-    return getCategoryFilters().map((item) => {
+    return filters?.map((item) => {
       const text = item.charAt(0).toUpperCase() + item.slice(1);
       return (
         <FilterButton
@@ -73,7 +85,7 @@ export default function ItemListContainer() {
       <h2 className="text-2xl font-semibold tracking-wider">Nuestros productos:</h2>
       {filteredItems && (
         <div className="flex justify-between items-center w-full px-14">
-          <div className="flex gap-2">{filterButtons()}</div>
+          <div className="flex gap-2">{filters && filterButtons()}</div>
           {categoryParam && (
             <button
               type="button"

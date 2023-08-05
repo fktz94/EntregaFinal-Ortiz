@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 import CartWidget from './CartWidget';
 import { getCategoryFilters } from '../utilities/getProducts';
@@ -25,6 +25,20 @@ function DropdownItems({ text, to }) {
 }
 function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
+  const [filters, setFilters] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getCategoryFilters();
+        setFilters(data);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+    return () => setFilters(null);
+  }, []);
+
   const className = `p-2 flex items-center gap-2 border border-transparent font-semibold text-lg transition-colors ${
     isOpen ? 'text-fourth' : ''
   }`;
@@ -39,7 +53,7 @@ function Dropdown() {
     borderBottomColor: 'rgb(241,222,201)'
   };
 
-  const dropdownItems = getCategoryFilters().map((filter) => {
+  const dropdownItems = filters?.map((filter) => {
     const text = filter.charAt(0).toUpperCase() + filter.slice(1);
     return <DropdownItems key={filter} text={text} to={`products?category=${filter}`} />;
   });
@@ -65,7 +79,7 @@ function Dropdown() {
             className="border border-black"
             onMouseEnter={(event) => handleSetIsOpen(event)}
             onMouseLeave={(event) => handleSetIsOpen(event)}>
-            {dropdownItems}
+            {filters && dropdownItems}
           </ul>
         </div>
       )}
