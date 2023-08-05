@@ -24,7 +24,6 @@ function DropdownItems({ text, to }) {
   );
 }
 function Dropdown() {
-  const [categories, setCategories] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const className = `p-2 flex items-center gap-2 border border-transparent font-semibold text-lg transition-colors ${
     isOpen ? 'text-fourth' : ''
