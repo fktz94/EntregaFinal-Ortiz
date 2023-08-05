@@ -1,6 +1,8 @@
+import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 import CartWidget from './CartWidget';
+import { getCategoryFilters } from '../utilities/getProducts';
 
 function AccountButtons({ text }) {
   return (
@@ -11,17 +13,18 @@ function AccountButtons({ text }) {
     </button>
   );
 }
-function DropdownItems({ text }) {
+function DropdownItems({ text, to }) {
   const className = 'w-full p-3 block tracking-wide font-semibold hover:bg-first hover:text-fourth';
   return (
     <li className="relative">
-      <a href="/" className={className}>
+      <Link to={to} className={className}>
         {text}
-      </a>
+      </Link>
     </li>
   );
 }
 function Dropdown() {
+  const [categories, setCategories] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const className = `p-2 flex items-center gap-2 border border-transparent font-semibold text-lg transition-colors ${
     isOpen ? 'text-fourth' : ''
@@ -32,45 +35,61 @@ function Dropdown() {
     return setIsOpen(false);
   };
 
+  const activeStyle = {
+    color: 'rgb(241,222,201)',
+    borderBottomColor: 'rgb(241,222,201)'
+  };
+
+  const dropdownItems = getCategoryFilters().map((filter) => {
+    const text = filter.charAt(0).toUpperCase() + filter.slice(1);
+    return <DropdownItems key={filter} text={text} to={`products?category=${filter}`} />;
+  });
+
   return (
     <div className="relative">
-      <button
+      <NavLink
+        to="products"
         className={className}
-        type="button"
         onMouseEnter={(event) => handleSetIsOpen(event)}
-        onMouseLeave={(event) => handleSetIsOpen(event)}>
-        {/* Productos {isOpen ? '↑' : '↓'} */}
+        onMouseLeave={(event) => handleSetIsOpen(event)}
+        style={({ isActive }) => (isActive ? activeStyle : null)}>
         Productos
         {isOpen ? (
           <BiSolidUpArrow style={{ fontSize: '.5rem' }} />
         ) : (
           <BiSolidDownArrow style={{ fontSize: '.5rem' }} />
         )}
-      </button>
+      </NavLink>
       {isOpen && (
         <div className="absolute w-full bg-third">
           <ul
             className="border border-black"
             onMouseEnter={(event) => handleSetIsOpen(event)}
             onMouseLeave={(event) => handleSetIsOpen(event)}>
-            <DropdownItems text="Remeras" />
-            <DropdownItems text="Buzos" />
-            <DropdownItems text="Pantalones" />
-            <DropdownItems text="Gorros" />
+            {dropdownItems}
           </ul>
         </div>
       )}
     </div>
   );
 }
-function NavLink({ text }) {
+function NavigationLink({ text, to }) {
   const className =
     'p-2 border border-transparent font-semibold text-lg transition-colors hover:text-fourth hover:border-b-fourth';
+
+  const activeStyle = {
+    color: 'rgb(241,222,201)',
+    borderBottomColor: 'rgb(241,222,201)'
+  };
+
   return (
     <li>
-      <a href="/" className={`block h-full ${className}`}>
+      <NavLink
+        to={to}
+        className={`block h-full ${className}`}
+        style={({ isActive }) => (isActive ? activeStyle : null)}>
         {text}
-      </a>
+      </NavLink>
     </li>
   );
 }
@@ -79,21 +98,25 @@ export default function NavBar() {
   return (
     <header className="p-5 shadow-md border-b border-black bg-first">
       <div className="flex justify-between items-center max-w-6xl m-auto">
-        <span className="font-bold cursor-default text-3xl tracking-wide transition-colors hover:text-fourth">
+        <Link
+          to="/"
+          className="font-bold text-3xl tracking-wide transition-colors hover:text-fourth">
           MORO
-        </span>
+        </Link>
         <nav>
           <ul className="flex justify-between gap-2">
-            <NavLink text="Nosotros" />
+            <NavigationLink text="Nosotros" to="/about" />
             <Dropdown />
-            <NavLink text="Contacto" />
+            <NavigationLink text="Contacto" to="/contact" />
           </ul>
         </nav>
         <div className="flex gap-2">
           <AccountButtons text="Registrarse" />
           <AccountButtons text="Ingresar" />
         </div>
-        <CartWidget />
+        <Link to="./cart">
+          <CartWidget />
+        </Link>
       </div>
     </header>
   );
