@@ -9,6 +9,7 @@
 - PreEntrega 2
 
 ---
+![moro_AdobeExpress (1)](https://github.com/fktz94/PreEntrega2-Ortiz/assets/106633973/d7e7d04f-f709-481e-9148-8f49b5cc34ab)
 
 Página web que funciona como tienda virtual de una empresa de venta de ropa.
 
