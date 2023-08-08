@@ -10,6 +10,8 @@
 
 ---
 
+![moro_AdobeExpress (1)](https://github.com/fktz94/PreEntrega2-Ortiz/assets/106633973/c769130b-f5cf-4b8a-b900-b91695117633)
+
 Página web que funciona como tienda virtual de una empresa de venta de ropa.
 
 ---
