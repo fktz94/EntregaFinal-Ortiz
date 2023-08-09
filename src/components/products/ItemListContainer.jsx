@@ -3,19 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { ThreeDots as Loader } from 'svg-loaders-react';
 import ItemList from './ItemList';
 import getProducts, { getCategoryFilters } from '../../utilities/getProducts';
-
-function FilterButton({ text, onClick, activeStyle }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`px-2 py-1 border rounded shadow font-medium border-first hover:bg-light active:bg-first active:text-light ${
-        activeStyle ? 'bg-light' : ''
-      }`}>
-      {text}
-    </button>
-  );
-}
+import FilterButton from './FilterButton';
 
 export default function ItemListContainer() {
   const [items, setItems] = useState(null);
@@ -39,6 +27,7 @@ export default function ItemListContainer() {
 
     return () => setItems(null);
   }, []);
+
   useEffect(() => {
     (async () => {
       try {
