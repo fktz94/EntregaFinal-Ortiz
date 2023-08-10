@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import About from './pages/About';
-import Cart from './components/Cart';
-import Contact from './pages/Contact';
-import Home from './pages/Home';
+import About from './components/pages/About';
+import Cart from './components/cart/Cart';
+import Contact from './components/pages/Contact';
+import Home from './components/pages/Home';
 import ItemListContainer from './components/products/ItemListContainer';
 import ItemDetailContainer from './components/products/ItemDetailContainer';
 import Layout from './components/Layout';
-import NotFound from './pages/NotFound';
+import NotFound from './components/pages/NotFound';
 import { ShoppingCartProvider } from './context/ShoppingCartContext';
 
 export default function App() {

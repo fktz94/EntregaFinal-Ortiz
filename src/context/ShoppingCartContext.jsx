@@ -3,7 +3,22 @@ import { createContext, useMemo, useState } from 'react';
 export const CartContext = createContext(null);
 
 export function ShoppingCartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([
+    {
+      id: 2,
+      imgUrl: '../../assets/buzo-oversize-lila.jpg',
+      price: 100,
+      selectedPurchase: 2,
+      title: 'Buzo oversize lila'
+    },
+    {
+      id: 5,
+      imgUrl: '../../assets/medias.heic',
+      price: 100,
+      selectedPurchase: 1,
+      title: 'Medias'
+    }
+  ]);
 
   const handleAddProduct = (product, selectedPurchase) => {
     const newProduct = {
@@ -36,8 +51,12 @@ export function ShoppingCartProvider({ children }) {
     });
   };
 
+  const handleClearCart = () => {
+    setCart([]);
+  };
+
   const value = useMemo(() => {
-    return { cart, handleAddProduct, handleRemoveProduct };
+    return { cart, handleAddProduct, handleRemoveProduct, handleClearCart };
   }, [cart]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
