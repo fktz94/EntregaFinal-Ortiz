@@ -1,59 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { ThreeDots as Loader } from 'svg-loaders-react';
 import ItemList from './ItemList';
-import getProducts, { getCategoryFilters } from '../../utilities/getProducts';
 import FilterButton from './FilterButton';
+import useProducts from '../../hooks/useProducts';
+import useQueryParams from '../../hooks/useQueryParams';
+import SectionItemContainer from './SectionItemContainer';
+import ItemCard from './ItemCard';
 
 export default function ItemListContainer() {
-  const [items, setItems] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [filters, setFilters] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const categoryParam = searchParams.get('category');
-
-  useEffect(() => {
-    (async () => {
-      try {
-        setIsLoading(true);
-        const fetchedProducts = await getProducts();
-        setItems(fetchedProducts);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-
-    return () => setItems(null);
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await getCategoryFilters();
-        setFilters(data);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-    return () => setFilters(null);
-  }, []);
+  const { items, isLoading, filters } = useProducts();
+  const { handleParams, categoryParam } = useQueryParams();
 
   const filteredItems = categoryParam
     ? items?.filter((item) => item.category === categoryParam)
     : items;
-
-  const handleParams = (key, value) => {
-    setSearchParams((prev) => {
-      if (value === null) {
-        prev.delete(key);
-      } else {
-        prev.set(key, value);
-      }
-      return prev;
-    });
-  };
 
   const filterButtons = () => {
     return filters?.map((item) => {
@@ -70,7 +29,7 @@ export default function ItemListContainer() {
   };
 
   return (
-    <div className="m-8 p-8 flex flex-col gap-5 items-center rounded shadow-xl bg-fourth">
+    <SectionItemContainer>
       <h2 className="text-2xl font-semibold tracking-wider">Nuestros productos:</h2>
       {filteredItems && (
         <div className="flex justify-between items-center w-full px-14">
@@ -91,14 +50,12 @@ export default function ItemListContainer() {
         </div>
       )}
       {filteredItems && (
-        <ItemList
-          items={filteredItems}
-          searchState={{
-            search: searchParams?.toString() ? `?${searchParams?.toString()}` : '',
-            category: categoryParam || ''
-          }}
-        />
+        <ItemList>
+          {filteredItems?.map(({ id, title, imgUrl, stock }) => {
+            return <ItemCard key={id} id={id} title={title} imgUrl={imgUrl} quantity={stock} />;
+          })}
+        </ItemList>
       )}
-    </div>
+    </SectionItemContainer>
   );
 }

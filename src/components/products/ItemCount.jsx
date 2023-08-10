@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import AddButton from './AddButton';
 
 export default function ItemCount({ onAdd, stock }) {
   const [purchase, setPurchase] = useState(stock > 0 ? 1 : 0);
@@ -13,7 +14,6 @@ export default function ItemCount({ onAdd, stock }) {
 
   // Según la documentación de REACT, debería encontrar una manera de no usar useEffect para lo que sigue.
   // https://react.dev/learn/you-might-not-need-an-effect
-
   useEffect(() => {
     setPurchase(stock > 0 ? 1 : 0);
   }, [stock]);

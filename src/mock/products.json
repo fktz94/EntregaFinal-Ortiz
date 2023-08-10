@@ -5,7 +5,7 @@
     "description": "",
     "stock": 10,
     "imgUrl": "../../assets/remera-overzise-gris.jpg",
-    "price": "$100",
+    "price": 100,
     "details": "confeccionada con algodón deluxe",
     "category": "remeras"
   },
@@ -15,7 +15,7 @@
     "description": "",
     "stock": 5,
     "imgUrl": "../../assets/buzo-oversize-lila.jpg",
-    "price": "$100",
+    "price": 100,
     "details": "confeccionada con algodón deluxe",
     "category": "buzos"
   },
@@ -25,7 +25,7 @@
     "description": "",
     "stock": 0,
     "imgUrl": "../../assets/gorros.jpg",
-    "price": "$100",
+    "price": 100,
     "details": "confeccionada con algodón deluxe",
     "category": "gorros"
   },
@@ -35,7 +35,7 @@
     "description": "gris",
     "stock": 7,
     "imgUrl": "../../assets/medias.heic",
-    "price": "$100",
+    "price": 100,
     "details": "confeccionada con algodón deluxe",
     "category": "medias"
   },
@@ -45,7 +45,7 @@
     "description": "",
     "stock": 4,
     "imgUrl": "../../assets/remera-oversize-lila.HEIC",
-    "price": "$100",
+    "price": 100,
     "details": "confeccionada con algodón deluxe",
     "category": "remeras"
   }

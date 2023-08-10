@@ -1,24 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
-import { getCategoryFilters } from '../../utilities/getProducts';
 import DropdownItems from './DropdownItems';
+import useProducts from '../../hooks/useProducts';
 
 export default function Dropdown() {
+  const { filters } = useProducts();
   const [isOpen, setIsOpen] = useState(false);
-  const [filters, setFilters] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await getCategoryFilters();
-        setFilters(data);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-    return () => setFilters(null);
-  }, []);
 
   const className = `p-2 flex items-center gap-2 border border-transparent font-semibold text-lg transition-colors ${
     isOpen ? 'text-fourth' : ''
@@ -60,7 +48,16 @@ export default function Dropdown() {
             className="border border-black"
             onMouseEnter={(event) => handleSetIsOpen(event)}
             onMouseLeave={(event) => handleSetIsOpen(event)}>
-            {filters && dropdownItems}
+            {filters ? (
+              <>
+                <DropdownItems text="Todos" to="products" />
+                {dropdownItems}
+              </>
+            ) : (
+              <li className="text-center py-1">
+                <small>Cargando...</small>
+              </li>
+            )}
           </ul>
         </div>
       )}

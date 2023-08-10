@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ItemCount from './ItemCount';
+import { CartContext } from '../../context/ShoppingCartContext';
 
 export default function ItemDetail({ product }) {
   const { stock: quantity, imgUrl, title, price, details } = product;
+
+  const { handleAddProduct } = useContext(CartContext);
   const [stock, setStock] = useState(quantity);
 
   const disponible = stock > 0;
 
   const onAdd = (selectedPurchase) => {
     if (disponible && selectedPurchase > 0 && selectedPurchase <= stock) {
+      handleAddProduct(product, selectedPurchase);
       return setStock((prev) => prev - selectedPurchase);
     }
     return false;
@@ -20,7 +24,7 @@ export default function ItemDetail({ product }) {
         <img src={imgUrl} alt={title} className="rounded h-96 w-[400px] object-cover" />
         <h3 className="text-xl font-semibold tracking-wide">{title}</h3>
         <span>{details}</span>
-        <span>{price}</span>
+        <span>${price}</span>
         <ItemCount onAdd={onAdd} stock={stock} />
       </div>
       <div className="w-full py-1 text-center rounded-b border border-t-gray-400 bg-slate-300">

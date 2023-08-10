@@ -7,7 +7,7 @@ import ItemListContainer from './components/products/ItemListContainer';
 import ItemDetailContainer from './components/products/ItemDetailContainer';
 import Layout from './components/Layout';
 import NotFound from './pages/NotFound';
-import ShoppingCartProvider from './context/ShoppingCartContext';
+import { ShoppingCartProvider } from './context/ShoppingCartContext';
 
 export default function App() {
   return (

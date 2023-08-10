@@ -1,6 +1,6 @@
 import products from '../mock/products.json';
 
-export default function getProducts() {
+export function getProducts() {
   return new Promise((resolve, reject) => {
     if (products.length === 0) {
       reject(new Error('empty array'));
