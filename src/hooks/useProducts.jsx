@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCategoryFilters, getProducts } from '../utilities/getProducts';
+import { getCategoryFilters, getProducts } from '../services/getProducts';
 
 export default function useProducts() {
   const [items, setItems] = useState(null);

@@ -8,6 +8,8 @@ import ItemDetailContainer from './components/products/ItemDetailContainer';
 import Layout from './components/Layout';
 import NotFound from './components/pages/NotFound';
 import { ShoppingCartProvider } from './context/ShoppingCartContext';
+import CartForm from './components/cart/CartForm';
+import Thanks from './components/pages/Thanks';
 
 export default function App() {
   return (
@@ -18,9 +20,11 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="cartform" element={<CartForm />} />
             <Route path="contact" element={<Contact />} />
             <Route path="products" element={<ItemListContainer />} />
             <Route path="products/:id" element={<ItemDetailContainer />} />
+            <Route path="thanks" element={<Thanks />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

@@ -1,11 +1,14 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/ShoppingCartContext';
 import SectionItemContainer from '../products/SectionItemContainer';
 import CartItemList from './CartItemList';
 import CartItem from './CartItem';
+import useCartHook from '../../hooks/useCartHook';
 
 export default function Cart() {
   const { cart, handleClearCart } = useContext(CartContext);
+  const { cartTotalValue } = useCartHook();
   const cartItems = cart?.map(({ id, imgUrl, price, title, selectedPurchase }) => (
     <CartItem
       key={id}
@@ -16,14 +19,6 @@ export default function Cart() {
       purchase={selectedPurchase}
     />
   ));
-
-  const cartTotalValue = (array) => {
-    let total = 0;
-    for (let i = 0; i < array.length; i += 1) {
-      total += array[i].price * array[i].selectedPurchase;
-    }
-    return total;
-  };
 
   return (
     <SectionItemContainer>
@@ -42,11 +37,11 @@ export default function Cart() {
                 onClick={handleClearCart}>
                 Vaciar carrito
               </button>
-              <button
-                type="button"
+              <Link
+                to="/cartform"
                 className="px-2 py-1 shadow border border-black rounded font-semibold hover:bg-white">
                 Comprar!
-              </button>
+              </Link>
             </div>
           </>
         ) : (
