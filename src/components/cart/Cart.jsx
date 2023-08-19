@@ -9,16 +9,18 @@ import useCartHook from '../../hooks/useCartHook';
 export default function Cart() {
   const { cart, handleClearCart } = useContext(CartContext);
   const { cartTotalValue } = useCartHook();
-  const cartItems = cart?.map(({ id, imgUrl, price, title, selectedPurchase }) => (
-    <CartItem
-      key={id}
-      id={id}
-      title={title}
-      imgUrl={imgUrl}
-      price={price}
-      purchase={selectedPurchase}
-    />
-  ));
+  const cartItems = cart?.map(({ id, imgUrl, price, title, selectedPurchase }) => {
+    return (
+      <CartItem
+        key={id}
+        id={id}
+        title={title}
+        imgUrl={imgUrl}
+        price={price}
+        purchase={selectedPurchase}
+      />
+    );
+  });
 
   return (
     <SectionItemContainer>

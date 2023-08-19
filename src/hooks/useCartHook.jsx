@@ -1,22 +1,7 @@
 import { useState } from 'react';
 
 export default function useCartHook() {
-  const [cart, setCart] = useState([
-    {
-      id: 2,
-      imgUrl: '../../assets/buzo-oversize-lila.jpg',
-      price: 100,
-      selectedPurchase: 2,
-      title: 'Buzo oversize lila'
-    },
-    {
-      id: 5,
-      imgUrl: '../../assets/medias.heic',
-      price: 100,
-      selectedPurchase: 1,
-      title: 'Medias'
-    }
-  ]);
+  const [cart, setCart] = useState([]);
 
   const handleAddProduct = (product, selectedPurchase) => {
     const newProduct = {
@@ -45,7 +30,7 @@ export default function useCartHook() {
 
   const handleRemoveProduct = (id) => {
     setCart((prev) => {
-      const productIndex = prev.findIndex((item) => item);
+      const productIndex = prev.findIndex((item) => item.id === id);
       if (prev[productIndex].selectedPurchase > 1) {
         return prev.map((item) => {
           if (item.id === id) {

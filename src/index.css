@@ -6,3 +6,18 @@
   box-sizing: border-box;
   margin: 0;
 }
+/* 
+.addedCart {
+  animation: 1.5s ease-out 1 forwards running added-to-cart;
+}
+
+@keyframes added-to-cart {
+  from {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 100%;
+    transform: translateX(-50%);
+  }
+} */

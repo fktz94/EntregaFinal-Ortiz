@@ -51,9 +51,9 @@ export default function ItemListContainer() {
       )}
       {filteredItems && (
         <ItemList>
-          {filteredItems?.map(({ id, title, imgUrl, stock }) => {
-            return <ItemCard key={id} id={id} title={title} imgUrl={imgUrl} quantity={stock} />;
-          })}
+          {filteredItems?.map(({ id, title, imgUrl, stock }) => (
+            <ItemCard key={id} id={id} title={title} imgUrl={imgUrl} quantity={stock} />
+          ))}
         </ItemList>
       )}
     </SectionItemContainer>

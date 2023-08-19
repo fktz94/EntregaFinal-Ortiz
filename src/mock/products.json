@@ -2,8 +2,7 @@
   {
     "id": 1,
     "title": "Remera oversize gris",
-    "description": "",
-    "stock": 10,
+    "stock": 1000,
     "imgUrl": "../../assets/remera-overzise-gris.jpg",
     "price": 100,
     "details": "confeccionada con algodón deluxe",
@@ -12,7 +11,6 @@
   {
     "id": 2,
     "title": "Buzo oversize lila",
-    "description": "",
     "stock": 5,
     "imgUrl": "../../assets/buzo-oversize-lila.jpg",
     "price": 100,
@@ -22,7 +20,6 @@
   {
     "id": 3,
     "title": "Gorros de lana",
-    "description": "",
     "stock": 0,
     "imgUrl": "../../assets/gorros.jpg",
     "price": 100,
@@ -42,7 +39,6 @@
   {
     "id": 6,
     "title": "Remera oversize lila",
-    "description": "",
     "stock": 4,
     "imgUrl": "../../assets/remera-oversize-lila.HEIC",
     "price": 100,

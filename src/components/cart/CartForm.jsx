@@ -4,13 +4,33 @@ import SectionItemContainer from '../products/SectionItemContainer';
 import { CartContext } from '../../context/ShoppingCartContext';
 import useCartHook from '../../hooks/useCartHook';
 
+const formValidation = (id, value, emailSetter) => {
+  if (id === 'name' && !value.match(/^[a-z ,.'-]+$/i)) {
+    emailSetter((prev) => {
+      return { ...prev, [id]: true };
+    });
+  } else if (id === 'email' && !value.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i)) {
+    emailSetter((prev) => {
+      return { ...prev, [id]: true };
+    });
+  } else {
+    emailSetter((prev) => {
+      return { ...prev, [id]: false };
+    });
+  }
+};
+
 function Form() {
-  const [{ name, email }, setUserData] = useState({ name: '', email: '' });
+  const [userData, setUserData] = useState({ name: '', email: '' });
   const [isError, setIsError] = useState({ name: false, email: false });
   const { handleBuy } = useContext(CartContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!userData.name || !userData.email) {
+      Object.keys(userData).map((item) => formValidation(item, userData[item], setIsError));
+      return;
+    }
     if (Object.values(isError).find((item) => item)) return;
     handleBuy();
   };
@@ -19,21 +39,9 @@ function Form() {
     const {
       target: { id, value }
     } = e;
-    if (id === 'name' && !value.match(/^[a-z ,.'-]+$/i)) {
-      setIsError((prev) => {
-        return { ...prev, [id]: true };
-      });
-    } else if (id === 'email' && !value.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i)) {
-      setIsError((prev) => {
-        return { ...prev, [id]: true };
-      });
-    } else {
-      setIsError((prev) => {
-        return { ...prev, [id]: false };
-      });
-    }
+    formValidation(id, value, setIsError);
 
-    setUserData((prev) => {
+    return setUserData((prev) => {
       return {
         ...prev,
         [id]: value
@@ -49,7 +57,7 @@ function Form() {
           <input
             type="text"
             id="name"
-            value={name}
+            value={userData.name}
             onChange={handleValue}
             className={`px-2 py-1 mt-2 outline-none border border-transparent focus:border-blue-400 ${
               isError.name ? 'border-red-600 focus:border-red-600' : ''
@@ -61,7 +69,7 @@ function Form() {
           <input
             type="email"
             id="email"
-            value={email}
+            value={userData.email}
             onChange={handleValue}
             className={`px-2 py-1 mt-2 outline-none border border-transparent focus:border-blue-400 ${
               isError.email ? 'border-red-600 focus:border-red-600' : ''
