@@ -51,6 +51,7 @@ export default function useProductsHook() {
         setIsLoading(false);
       }
     })();
+
     return () => setItems(null);
   }, [getAllProducts]);
 

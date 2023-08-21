@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { ProductContext } from '../context/ProductContext';
+import { useState } from 'react';
 
 export default function useCartHook() {
   const [cart, setCart] = useState([]);

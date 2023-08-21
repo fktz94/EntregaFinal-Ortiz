@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import AddButton from './AddButton';
 
 export default function ItemCount({ onAdd, stock, buttonRef }) {

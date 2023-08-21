@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
-import useItems from './useItems';
+import { useCallback } from 'react';
 
 export default function useFilters() {
   const getFilters = useCallback((items) => {
