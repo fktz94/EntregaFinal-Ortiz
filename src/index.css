@@ -6,7 +6,7 @@
   box-sizing: border-box;
   margin: 0;
 }
-/* 
+
 .addedCart {
   animation: 1.5s ease-out 1 forwards running added-to-cart;
 }
@@ -16,8 +16,12 @@
     opacity: 0;
     transform: translateX(0);
   }
+  50% {
+    opacity: 100%;
+  }
   to {
     opacity: 100%;
-    transform: translateX(-50%);
+    transform: translateX(-30%);
+    display: none;
   }
-} */
+}

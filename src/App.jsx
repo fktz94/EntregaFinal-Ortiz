@@ -16,6 +16,7 @@ import NotFound from './components/pages/NotFound';
 import { ShoppingCartProvider } from './context/ShoppingCartContext';
 import CartForm from './components/cart/CartForm';
 import Thanks from './components/pages/Thanks';
+import { ProductProvider } from './context/ProductContext';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -33,21 +34,23 @@ initializeApp(firebaseConfig);
 export default function App() {
   return (
     <BrowserRouter>
-      <ShoppingCartProvider>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="cartform" element={<CartForm />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="products" element={<ItemListContainer />} />
-            <Route path="products/:id" element={<ItemDetailContainer />} />
-            <Route path="thanks" element={<Thanks />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </ShoppingCartProvider>
+      <ProductProvider>
+        <ShoppingCartProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="cartform" element={<CartForm />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="products" element={<ItemListContainer />} />
+              <Route path="products/:id" element={<ItemDetailContainer />} />
+              <Route path="thanks" element={<Thanks />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </ShoppingCartProvider>
+      </ProductProvider>
     </BrowserRouter>
   );
 }

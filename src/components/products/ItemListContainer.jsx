@@ -1,13 +1,16 @@
+import { useContext } from 'react';
+
 import { ThreeDots as Loader } from 'svg-loaders-react';
 import ItemList from './ItemList';
 import FilterButton from './FilterButton';
-import useProducts from '../../hooks/useProducts';
 import useQueryParams from '../../hooks/useQueryParams';
 import SectionItemContainer from './SectionItemContainer';
 import ItemCard from './ItemCard';
+import { ProductContext } from '../../context/ProductContext';
 
 export default function ItemListContainer() {
-  const { items, isLoading, filters } = useProducts();
+  const { items, isLoading, filters } = useContext(ProductContext);
+
   const { handleParams, categoryParam } = useQueryParams();
 
   const filteredItems = categoryParam

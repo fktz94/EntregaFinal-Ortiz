@@ -5,9 +5,12 @@ import SectionItemContainer from '../products/SectionItemContainer';
 import CartItemList from './CartItemList';
 import CartItem from './CartItem';
 import useCartHook from '../../hooks/useCartHook';
+import { ProductContext } from '../../context/ProductContext';
 
 export default function Cart() {
   const { cart, handleClearCart } = useContext(CartContext);
+  const { handleAddStock } = useContext(ProductContext);
+
   const { cartTotalValue } = useCartHook();
   const cartItems = cart?.map(({ id, imgUrl, price, title, selectedPurchase }) => {
     return (
@@ -21,6 +24,11 @@ export default function Cart() {
       />
     );
   });
+
+  const handleClick = () => {
+    handleClearCart();
+    cart.map(({ id, selectedPurchase }) => handleAddStock(id, selectedPurchase));
+  };
 
   return (
     <SectionItemContainer>
@@ -36,7 +44,7 @@ export default function Cart() {
               <button
                 type="button"
                 className="px-2 py-1 shadow border border-black rounded font-semibold bg-first text-white hover:bg-third hover:text-black"
-                onClick={handleClearCart}>
+                onClick={handleClick}>
                 Vaciar carrito
               </button>
               <Link

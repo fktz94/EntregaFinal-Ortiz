@@ -1,9 +1,17 @@
 import { useContext } from 'react';
 import { BsFillCartXFill } from 'react-icons/bs';
 import { CartContext } from '../../context/ShoppingCartContext';
+import { ProductContext } from '../../context/ProductContext';
 
 export default function CartItem({ id, title, imgUrl, purchase, price }) {
   const { handleRemoveProduct } = useContext(CartContext);
+  const { handleAddStock } = useContext(ProductContext);
+
+  const handleClick = () => {
+    handleRemoveProduct(id);
+    handleAddStock(id);
+  };
+
   return (
     <div className="flex border border-black rounded">
       <img
@@ -34,7 +42,7 @@ export default function CartItem({ id, title, imgUrl, purchase, price }) {
         <button
           type="button"
           className="border p-1 rounded shadow border-black bg-white hover:bg-third active:border-red-600"
-          onClick={() => handleRemoveProduct(id)}>
+          onClick={handleClick}>
           <BsFillCartXFill />
         </button>
       </div>

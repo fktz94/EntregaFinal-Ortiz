@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 import DropdownItems from './DropdownItems';
-import useProducts from '../../hooks/useProducts';
+import { ProductContext } from '../../context/ProductContext';
 
 export default function Dropdown() {
-  const { filters } = useProducts();
+  const { filters } = useContext(ProductContext);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const className = `p-2 flex items-center gap-2 border border-transparent font-semibold text-lg transition-colors ${
@@ -48,7 +49,7 @@ export default function Dropdown() {
             className="border border-black"
             onMouseEnter={(event) => handleSetIsOpen(event)}
             onMouseLeave={(event) => handleSetIsOpen(event)}>
-            {filters ? (
+            {filters.length > 0 ? (
               <>
                 <DropdownItems text="Todos" to="products" />
                 {dropdownItems}

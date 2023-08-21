@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import AddButton from './AddButton';
 
-export default function ItemCount({ onAdd, stock }) {
+export default function ItemCount({ onAdd, stock, buttonRef }) {
   const [purchase, setPurchase] = useState(stock > 0 ? 1 : 0);
 
   const onPurchase = (value) => {
@@ -45,6 +45,7 @@ export default function ItemCount({ onAdd, stock }) {
       </div>
       <button
         type="button"
+        ref={buttonRef}
         onClick={handleAddToCart}
         className={`py-1 px-2 border rounded transition-colors outline-none ${
           purchase <= 0

@@ -26,7 +26,16 @@ export function ShoppingCartProvider({ children }) {
       isBuying,
       lastPurchase
     };
-  }, [cart, isBuying]);
+  }, [
+    cart,
+    handleAddProduct,
+    handleBuy,
+    handleClearCart,
+    handleLastStep,
+    handleRemoveProduct,
+    isBuying,
+    lastPurchase
+  ]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
