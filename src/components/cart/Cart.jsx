@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/ShoppingCartContext';
 import SectionItemContainer from '../products/SectionItemContainer';
@@ -6,7 +6,6 @@ import CartItemList from './CartItemList';
 import CartItem from './CartItem';
 import useCartHook from '../../hooks/useCartHook';
 import { ProductContext } from '../../context/ProductContext';
-import { useRef } from 'react';
 
 export default function Cart() {
   const { cart, handleClearCart } = useContext(CartContext);

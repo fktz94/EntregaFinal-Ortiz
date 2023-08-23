@@ -1,8 +1,7 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { BsFillCartXFill } from 'react-icons/bs';
 import { CartContext } from '../../context/ShoppingCartContext';
 import { ProductContext } from '../../context/ProductContext';
-import { useRef } from 'react';
 
 export default function CartItem({ id, title, imgUrl, purchase, price }) {
   const { handleRemoveProduct } = useContext(CartContext);
