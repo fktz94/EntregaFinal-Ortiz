@@ -45,7 +45,7 @@ export default function ItemCount({ onAdd, stock, buttonRef }) {
       </div>
       <button
         type="button"
-        ref={buttonRef}
+        // ref={buttonRef}
         onClick={handleAddToCart}
         className={`py-1 px-2 border rounded transition-colors outline-none ${
           purchase <= 0

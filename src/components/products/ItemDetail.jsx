@@ -9,7 +9,6 @@ export default function ItemDetail({ product }) {
   const { handleAddProduct } = useContext(CartContext);
   const { handleRemoveStock } = useContext(ProductContext);
 
-  const buttonRef = useRef();
   const divRef = useRef();
 
   const handlePopUp = () => {
@@ -45,7 +44,7 @@ export default function ItemDetail({ product }) {
           <h3 className="text-xl font-semibold tracking-wide">{title}</h3>
           <span>{details}</span>
           <span>${price}</span>
-          <ItemCount buttonRef={buttonRef} onAdd={onAdd} stock={stock} />
+          <ItemCount onAdd={onAdd} stock={stock} />
         </div>
         <div className="w-full py-1 text-center rounded-b border border-t-gray-400 bg-slate-300">
           {disponible ? (
