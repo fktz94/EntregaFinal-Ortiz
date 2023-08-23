@@ -7,7 +7,7 @@ function CartWidget() {
   return (
     <p className="py-2 px-4 flex gap-2 items-center rounded-full bg-black text-light">
       <BsCart4 style={{ fontSize: '1.3rem' }} />
-      {cart.length}
+      {cart?.length}
     </p>
   );
 }

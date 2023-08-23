@@ -2,34 +2,24 @@ import { useContext, useRef } from 'react';
 import { BsFillCartXFill } from 'react-icons/bs';
 import { CartContext } from '../../context/ShoppingCartContext';
 import { ProductContext } from '../../context/ProductContext';
+import usePopUp from '../../hooks/usePopUp';
+import PopUp from '../PopUp';
 
 export default function CartItem({ id, title, imgUrl, purchase, price }) {
   const { handleRemoveProduct } = useContext(CartContext);
   const { handleAddStock } = useContext(ProductContext);
 
   const divRef = useRef();
-
-  const handlePopUp = () => {
-    divRef.current?.classList.remove('addedCart');
-    setTimeout(() => {
-      divRef.current?.classList.add('addedCart');
-    }, 100);
-  };
+  const { handlePopUp } = usePopUp();
 
   const handleClick = () => {
-    handlePopUp();
+    handlePopUp(divRef);
     handleRemoveProduct(id);
     handleAddStock(id);
   };
-
   return (
     <>
-      <div
-        ref={divRef}
-        className="fixed opacity-0 top-5 right-5 p-4 text-xs rounded-full text-white bg-black">
-        Producto eliminado del carrito!
-      </div>
-
+      <PopUp divRef={divRef} text="Producto eliminado del carrito!" />
       <div className="flex border border-black rounded">
         <img
           src={imgUrl}

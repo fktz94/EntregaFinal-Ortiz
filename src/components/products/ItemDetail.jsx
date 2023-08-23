@@ -2,6 +2,8 @@ import { useContext, useRef, useState } from 'react';
 import ItemCount from './ItemCount';
 import { CartContext } from '../../context/ShoppingCartContext';
 import { ProductContext } from '../../context/ProductContext';
+import usePopUp from '../../hooks/usePopUp';
+import PopUp from '../PopUp';
 
 export default function ItemDetail({ product }) {
   const { stock: quantity, imgUrl, title, price, details, id } = product;
@@ -9,20 +11,15 @@ export default function ItemDetail({ product }) {
   const { handleAddProduct } = useContext(CartContext);
   const { handleRemoveStock } = useContext(ProductContext);
 
+  const { handlePopUp } = usePopUp();
   const divRef = useRef();
-
-  const handlePopUp = () => {
-    divRef.current?.classList.remove('addedCart');
-    setTimeout(() => {
-      divRef.current?.classList.add('addedCart');
-    }, 100);
-  };
 
   const [stock, setStock] = useState(quantity);
   const disponible = stock > 0;
+
   const onAdd = (selectedPurchase) => {
     if (disponible && selectedPurchase > 0 && selectedPurchase <= stock) {
-      handlePopUp();
+      handlePopUp(divRef);
       handleAddProduct(product, selectedPurchase);
       handleRemoveStock(id, selectedPurchase);
       return setStock((prev) => prev - selectedPurchase);
@@ -32,12 +29,7 @@ export default function ItemDetail({ product }) {
 
   return (
     <>
-      <div
-        ref={divRef}
-        className="fixed opacity-0 top-5 right-5 p-4 text-xs rounded-full text-white bg-black">
-        Producto agregado al carrito!
-      </div>
-
+      <PopUp divRef={divRef} text="Producto agregado al carrito!" />
       <div className="flex flex-col gap-2 rounded border bg-light border-black">
         <div className="p-4 flex flex-col items-center gap-6 max-w-md">
           <img src={imgUrl} alt={title} className="rounded h-96 w-[400px] object-cover" />

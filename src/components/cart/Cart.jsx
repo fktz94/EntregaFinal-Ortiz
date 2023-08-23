@@ -6,6 +6,8 @@ import CartItemList from './CartItemList';
 import CartItem from './CartItem';
 import useCartHook from '../../hooks/useCartHook';
 import { ProductContext } from '../../context/ProductContext';
+import PopUp from '../PopUp';
+import usePopUp from '../../hooks/usePopUp';
 
 export default function Cart() {
   const { cart, handleClearCart } = useContext(CartContext);
@@ -25,29 +27,18 @@ export default function Cart() {
     );
   });
 
+  const { handlePopUp } = usePopUp();
   const divRef = useRef();
 
-  const handlePopUp = () => {
-    divRef.current?.classList.remove('addedCart');
-    setTimeout(() => {
-      divRef.current?.classList.add('addedCart');
-    }, 100);
-  };
-
   const handleClick = () => {
-    handlePopUp();
+    handlePopUp(divRef);
     handleClearCart();
     cart.map(({ id, selectedPurchase }) => handleAddStock(id, selectedPurchase));
   };
 
   return (
     <>
-      <div
-        ref={divRef}
-        className="fixed opacity-0 top-5 right-5 p-4 text-xs rounded-full text-white bg-black">
-        Carrito vaciado!
-      </div>
-
+      <PopUp divRef={divRef} text="Carrito vaciado!" />
       <SectionItemContainer>
         <h2 className="text-2xl font-semibold">Mi carrito</h2>
         <CartItemList>
