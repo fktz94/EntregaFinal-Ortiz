@@ -35,6 +35,8 @@ Página web que funciona como tienda virtual de una empresa de venta de ropa.
 
 - Se instaló la dependencia **React Icons** para usar los íconos de los Carts y **React Confetti** para darle un detalle estético al concluir la compra.
 
+- No está diseñada para ser responsive. El diseño es desktop-first.
+
 ---
 
 ## Estructura del proyecto

@@ -100,6 +100,12 @@ function FinalStep() {
     );
   });
 
+  const handleClick = () => {
+    handleLastStep();
+    handleClearCart();
+    navigate('/thanks');
+  };
+
   return (
     <div className="flex flex-col gap-8">
       <span className="font-semibold text-2xl">Confirmar compra por:</span>
@@ -113,11 +119,7 @@ function FinalStep() {
         </ul>
       </div>
       <button
-        onClick={() => {
-          handleLastStep();
-          handleClearCart();
-          navigate('/thanks');
-        }}
+        onClick={handleClick}
         type="button"
         className="px-2 py-1 shadow border border-black rounded font-semibold hover:bg-white">
         Finalizar compra
