@@ -71,6 +71,7 @@ Página web que funciona como tienda virtual de una empresa de venta de ropa.
      Ninguna de los componentes tiene nigún estilo ni componente dentro, son solamente para utilizar React Router.
   4. _NotFound.jsx_ se renderiza cada vez que se introduce una **Route** inexistente. Contiene un botón para redireccionar al home.
   5. _Thanks.jsx_ es la página a la cuál se llega al concluir la 'Compra'. Renderiza el plugin **Confetti** con fines estéticos y un botón para volver al home.
+  6. _PopUp.jsx_ es la ventana que aparece momentaneamente cuando se agrega o quita algún producto al carrito.
 
 - En la carpeta **products** se encuentra gran parte de las tareas propias de la consigna:
 
@@ -104,6 +105,7 @@ Página web que funciona como tienda virtual de una empresa de venta de ropa.
 - _useQueryParams.jsx_ permite setear los searchParams (hook de react-router) y el state que van a transferir los Link en _ItemCard_.
 - _useProductsHook.jsx_ es donde se crea el estado que va a almacenar los productos (**items**), el cuál va a permitir que se modifique el stock sin modificar la base de datos, a través de un useEffect utilizando la función que viene de _useItems.jsx_. **isLoading** es el estado que se 'activa' mientras se espera el fetching de datos y se 'desactiva' una vez que llega.
   Además de los items, devuelve los filtros y cada item particular, y las funciones para modificar el stock de cada item, que se ejecutan cada vez que se agregue o quite un producto del carrito.
+- _usePopUp.jsx_ es una función que se utiliza para disparar la animación del popup. Se reutiliza en 3 lugares distintos.
 
 4. En la carpeta **mock** está el archivo .json original, antes de utilizar **Firebase**
 5. En la carpeta **services** está el script donde se creaban las promesas que simulaban la base de datos y traían la info del mock.
